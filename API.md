@@ -72,3 +72,24 @@ puts res.body
 ```rb
 { 'current_user' : 'username' }
 ```
+
+curl -i http://localhost:3000/oauth/token \
+-F grant_type=password \
+-F username=xxqfamous@gmail.com \
+-F password=famous \
+-F client_id=6a508bf2 \
+-F client_secret=59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
+
+curl http://localhost:3000/api/v3/users/me.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+
+## 广告商上架
+curl http://localhost:3000/api/v3/advertisers.json -d "access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb" \
+-d "advertiser[name]=人人贷理财1" \
+-d "advertiser[company]=北京九鼎投资集团有限公司2" \
+
+## 广告商列表
+curl http://localhost:3000/api/v3/advertisers.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+
+## 广告商详情
+curl http://localhost:3000/api/v3/advertisers/1.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+

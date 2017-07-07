@@ -9,6 +9,19 @@ module Api
       helper_method :can?, :current_user, :current_ability, :meta
       helper_method :admin?, :owner?, :markdown, :raw
 
+      begin
+        'pagination'
+
+        def page
+          params[:page] || 1
+        end
+
+        def per_page
+          limit = (params[:per_page] || 20).to_i
+          limit > 100 ? 100 : limit # 限制每页最多 100 条记录
+        end
+      end
+
       # 参数值不在允许的范围内
       # HTTP Status 400
       #

@@ -16,7 +16,10 @@ class User < ApplicationRecord
   second_level_cache expires_in: 2.weeks
 
   LOGIN_FORMAT = 'A-Za-z0-9\-\_\.'
+  # 只允许数字、大小写字母、中横线、下划线
   ALLOW_LOGIN_FORMAT_REGEXP = /\A[#{LOGIN_FORMAT}]+\z/
+  # 手机号
+  ALLOW_LOGIN_MOBILE_FORMAT_REGEXP = /^1[3|4|5|7|8][0-9]\d{8}$/
 
   devise :database_authenticatable, :registerable, :recoverable, :lockable,
          :rememberable, :trackable, :validatable, :omniauthable
@@ -33,6 +36,8 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users
   has_one :sso, class_name: "UserSSO", dependent: :destroy
+  has_one :user_account, :dependent => :destroy
+  has_many :user_account_records, :dependent => :destroy
 
   attr_accessor :password_confirmation
 
@@ -42,7 +47,7 @@ class User < ApplicationRecord
 
   enum state: { deleted: -1, normal: 1, blocked: 2 }
 
-  validates :login, format: { with: ALLOW_LOGIN_FORMAT_REGEXP, message: "只允许数字、大小写字母、中横线、下划线" },
+  validates :login, format: { with: ALLOW_LOGIN_MOBILE_FORMAT_REGEXP, :multiline => true, message: "手机号格式错误" },
                     length: { in: 2..20 },
                     presence: true,
                     uniqueness: { case_sensitive: false }

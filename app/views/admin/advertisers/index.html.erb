@@ -1,0 +1,44 @@
+<% content_for :sitemap do %>
+    <span class="current">广告商</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-inline" action="<%= admin_advertisers_path %>">
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="名称"/>
+    </div>
+    <!--<div class="form-group">-->
+    <!--<%= select_tag(:type, options_for_select([['全部类别', ''], ['组织', 'Team']], params[:type]), class: 'form-control') %>-->
+    <!--</div>-->
+    <button class="btn btn-default">搜索</button>
+  </form>
+  <div class="pull-right">
+    <%= link_to '增加', new_admin_advertiser_path, class: "btn btn-info" %>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>名称</td>
+    <td>公司名称</td>
+    <td>奖励金额</td>
+    <td>注册时间</td>
+    <td>导流情况</td>
+    <td>操作</td>
+  </tr>
+
+  <% @advertisers.each do |advertiser| %>
+      <tr>
+        <td class="first"><%= advertiser.id %></td>
+        <td><%= advertiser.name %></td>
+        <td><%= advertiser.company %></td>
+        <td><%= advertiser.reward_amount %></td>
+        <td><%= advertiser.created_at.to_date %></td>
+        <td><%= link_to '查看',visit_info_admin_advertiser_path(advertiser.id) %></td>
+        <td>
+          <%= link_to '', edit_admin_advertiser_path(advertiser.id), class: "fa fa-pencil" %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<%= paginate @advertisers %>

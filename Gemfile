@@ -1,7 +1,7 @@
 if ENV['TRAVIS']
   source 'https://rubygems.org'
 else
-  source 'https://gems.ruby-china.org'
+  source 'http://gems.ruby-china.org'
 end
 
 gem 'rails', '~> 5.1.0'
@@ -103,7 +103,7 @@ gem 'postmark'
 gem 'postmark-rails'
 
 # Dalli, kgio is for Dalli
-gem 'kgio'
+# gem 'kgio'
 gem 'dalli'
 
 gem 'puma'
@@ -135,7 +135,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'listen'
+  # gem 'listen'
   gem 'rubocop', '0.47.1', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'

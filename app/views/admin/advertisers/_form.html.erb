@@ -1,0 +1,28 @@
+<%= simple_form_for([:admin, @advertiser], url: admin_advertiser_path(@advertiser)) do |f| %>
+    <%= render 'shared/error_messages', target: @advertiser %>
+    <%= f.file_field :logo_url %>
+    <%= f.file_field :banner_url %>
+    <div class="form-group">
+      <%= image_tag(@advertiser.banner_url, class: "media-object") %>
+    </div>
+    <%= f.input :name %>
+    <%= f.input :company %>
+    <%= f.input :company_info, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :reward, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :reward_amount%>
+    <%= f.input :rule, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :guide, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :sort %>
+    <%= f.input :url %>
+    <%= f.input :download_url %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= f.submit t("common.save"), class: "btn btn-lg btn-block btn-primary", 'data-disable-with' => t("common.saving") %>
+    </div>
+    <div class="col-sm-6">
+        <div class="pull-right">
+          <%= link_to '删除此记录', admin_advertiser_path(@advertiser.id), 'data-confirm' => '警告！此动作无法撤销，确定要删除么?', method: :delete, class: "btn btn-danger"  %>
+        </div>
+    </div>
+  </div>
+<% end %>

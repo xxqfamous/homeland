@@ -1,0 +1,36 @@
+<% content_for :sitemap do %>
+    <a href="<%= admin_advertisers_path %>"><%= t("admin.menu.advertisers")%></a> <i class="fa fa-angle-right"></i> <span class="current">导流情况</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-inline" action="<%= visit_info_admin_advertiser_path(@advertiser.id) %>">
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="名称"/>
+    </div>
+    <!--<div class="form-group">-->
+    <!--<%= select_tag(:type, options_for_select([['全部类别', ''], ['组织', 'Team']], params[:type]), class: 'form-control') %>-->
+    <!--</div>-->
+    <button class="btn btn-default">搜索</button>
+  </form>
+  <!--<div class="pull-right">-->
+  <!--<%= link_to '增加', new_admin_advertiser_path, class: "btn btn-info" %>-->
+  <!--</div>-->
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>用户</td>
+    <td>奖励金额</td>
+    <td>时间</td>
+  </tr>
+
+  <% @visit_logs.each do |log| %>
+      <tr>
+        <td class="first"><%= log.id %></td>
+        <td><%= log.user.login %></td>
+        <td><%= log.reward_amount %></td>
+        <td><%= log.created_at.to_s(:db) %></td>
+      </tr>
+  <% end %>
+</table>
+<%= paginate @visit_logs %>

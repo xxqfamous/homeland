@@ -112,6 +112,11 @@ Rails.application.routes.draw do
     resources :locations
     resources :applications
     resources :stats
+    resources :advertisers do
+      member do
+        get :visit_info
+      end
+    end
   end
 
   get 'api', to: 'home#api', as: 'api'
@@ -167,6 +172,14 @@ Rails.application.routes.draw do
           post :unblock
         end
       end
+      resources :advertisers do
+        member do
+          get :to_url
+        end
+      end
+
+      get 'auth/send_sms', :to => 'auth#send_sms', :as => 'send_sms'
+      post 'auth/valid_random_code', :to => 'auth#valid_random_code', :as => 'valid_random_code'
 
       match '*path', to: 'root#not_found', via: :all
     end

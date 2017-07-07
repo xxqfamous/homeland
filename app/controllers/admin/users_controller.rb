@@ -18,7 +18,7 @@ module Admin
 
     def new
       @user = User.new
-      @user._id = nil
+      # @user._id = nil
     end
 
     def edit

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
- <div class="header">
+ <nav class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -22,23 +22,24 @@
           <%= render_list class: "nav navbar-nav" do |li|
             li << link_to(t("admin.menu.root_path"), main_app.admin_root_path)
             li << link_to(t("admin.menu.users"), main_app.admin_users_path)
-            li << link_to(t("admin.menu.sections"), main_app.admin_sections_path )
-            li << link_to(t("admin.menu.nodes"), main_app.admin_nodes_path )
-            li << link_to(t("admin.menu.topics"), main_app.admin_topics_path)
-            li << link_to(t("admin.menu.replies"), main_app.admin_replies_path)
-            li << link_to(t("admin.menu.comments"), main_app.admin_comments_path )
-            li << link_to(t("admin.menu.photos"), main_app.admin_photos_path )
-            li << link_to(t("admin.menu.locations"), main_app.admin_locations_path )
-            Homeland.admin_navbar_plugins.each do |plugin|
-              li << link_to(plugin.display_name, plugin.admin_path)
-            end
+            li << link_to("广告商", main_app.admin_advertisers_path)
+            # li << link_to(t("admin.menu.sections"), main_app.admin_sections_path )
+            # li << link_to(t("admin.menu.nodes"), main_app.admin_nodes_path )
+            # li << link_to(t("admin.menu.topics"), main_app.admin_topics_path)
+            # li << link_to(t("admin.menu.replies"), main_app.admin_replies_path)
+            # li << link_to(t("admin.menu.comments"), main_app.admin_comments_path )
+            # li << link_to(t("admin.menu.photos"), main_app.admin_photos_path )
+            # li << link_to(t("admin.menu.locations"), main_app.admin_locations_path )
+            # Homeland.admin_navbar_plugins.each do |plugin|
+            #   li << link_to(plugin.display_name, plugin.admin_path)
+            # end
           end  %>
         </nav>
 
         <%= render "shared/usernav" %>
       </div>
-    </div>
-  </div>
+    </nav>
+  </nav>
 
 
   <div class="main-container container">
