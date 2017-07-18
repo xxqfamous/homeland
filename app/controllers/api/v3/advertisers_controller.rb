@@ -31,6 +31,7 @@ module Api
       def show
         @meta = {followed: false, blocked: false}
         @advertiser = Advertiser.find(params[:id])
+        @advertiser.increment!(:visits_count)
       end
 
       # 创建新话题

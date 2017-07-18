@@ -72,11 +72,25 @@ puts res.body
 ```rb
 { 'current_user' : 'username' }
 ```
-
+## ouath2.0
 curl -i http://localhost:3000/oauth/token \
 -F grant_type=password \
 -F username=xxqfamous@gmail.com \
 -F password=famous \
+-F client_id=c0d64bee \
+-F client_secret=e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4
+
+
+## 登录
+curl -i http://localhost:3000/api/v3/auth/login \
+-F username=15084992712 \
+-F client_id=6a508bf2 \
+-F client_secret=59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
+
+## 登录加验证码
+curl -i http://localhost:3000/api/v3/auth/login_or_register \
+-F vcode=111222 \
+-F username=15084992712 \
 -F client_id=6a508bf2 \
 -F client_secret=59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
 
@@ -92,4 +106,9 @@ curl http://localhost:3000/api/v3/advertisers.json?access_token=cf408a4734cd0b93
 
 ## 广告商详情
 curl http://localhost:3000/api/v3/advertisers/1.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+
+## 验证码
+curl http://localhost:3000/api/v3/auth/random_code -d mobile="13429151265" -G
+
+
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706084602) do
+ActiveRecord::Schema.define(version: 20170717075806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170706084602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo_url", limit: 255
+    t.integer "visits_count", default: 0
     t.index ["name"], name: "index_advertisers_on_name", unique: true
     t.index ["status"], name: "index_advertisers_on_status"
   end
@@ -289,6 +290,19 @@ ActiveRecord::Schema.define(version: 20170706084602) do
     t.index ["deleted_at"], name: "index_sites_on_deleted_at"
     t.index ["site_node_id"], name: "index_sites_on_site_node_id"
     t.index ["url"], name: "index_sites_on_url"
+  end
+
+
+
+  create_table "sms_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "channel"
+    t.string "mobile"
+    t.string "content"
+    t.integer "status"
+    t.text "return_str"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "team_users", id: :serial, force: :cascade do |t|

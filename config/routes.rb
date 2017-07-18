@@ -178,8 +178,9 @@ Rails.application.routes.draw do
         end
       end
 
-      get 'auth/send_sms', :to => 'auth#send_sms', :as => 'send_sms'
-      post 'auth/valid_random_code', :to => 'auth#valid_random_code', :as => 'valid_random_code'
+      get 'auth/reg_mobile_code', :to => 'auth#reg_mobile_code', :as => 'reg_mobile_code'
+      post 'auth/login', :to => 'auth#login', :as => 'login'
+      post 'auth/login_or_register', :to => 'auth#login_or_register', :as => 'login_or_register'
 
       match '*path', to: 'root#not_found', via: :all
     end

@@ -54,6 +54,8 @@ class User < ApplicationRecord
 
   validates :name, length: { maximum: 20 }
 
+  validates :email, :presence => true, :allow_blank => true
+
   scope :hot, -> { order(replies_count: :desc).order(topics_count: :desc) }
   scope :without_team, -> { where(type: nil) }
   scope :fields_for_list, lambda {
@@ -275,9 +277,18 @@ class User < ApplicationRecord
     @team_collection = teams.collect { |t| [t.name, t.id] }
   end
 
+
   # for Searchable
   def as_indexed_json(_options = {})
     as_json(only: [:login, :name, :tagline, :bio, :email, :location])
+  end
+
+  def as_json(_options = {})
+    {
+        login: self.login,
+        name: self.name,
+        amount: self.user_account.nil? ? UserAccount.init_account(self.id).amount : self.user_account.amount
+    }
   end
 
   def indexed_changed?

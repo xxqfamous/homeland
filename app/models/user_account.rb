@@ -8,6 +8,7 @@ class UserAccount < ApplicationRecord
     account = UserAccount.new
     account.user_id=user_id
     account.save!
+    account
   end
 
 end
