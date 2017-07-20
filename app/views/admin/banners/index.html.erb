@@ -1,0 +1,41 @@
+<% content_for :sitemap do %>
+    <span class="current">Banner</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-inline" action="<%= admin_banners_path %>">
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="名称"/>
+    </div>
+    <button class="btn btn-default">搜索</button>
+  </form>
+  <div class="pull-right">
+    <%= link_to '增加', new_admin_banner_path, class: "btn btn-info" %>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>标题</td>
+    <td>位置</td>
+    <td>链接</td>
+    <td>排序</td>
+    <td>创建时间</td>
+    <td>操作</td>
+  </tr>
+
+  <% @banners.each do |banners| %>
+      <tr>
+        <td class="first"><%= banners.id %></td>
+        <td><%= banners.title %></td>
+        <td><%= banners.position %></td>
+        <td><%= banners.href %></td>
+        <td><%= banners.sort %></td>
+        <td><%= banners.created_at.to_date %></td>
+        <td>
+          <%= link_to '', edit_admin_banner_path(banners.id), class: "fa fa-pencil" %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<%= paginate @banners %>

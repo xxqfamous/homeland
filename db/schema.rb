@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717075806) do
+ActiveRecord::Schema.define(version: 20170720032613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,35 @@ ActiveRecord::Schema.define(version: 20170717075806) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid"
+  end
+
+  create_table "banners", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.string "img"
+    t.integer "sort"
+    t.string "href"
+    t.integer "status", default: 1
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cashout_applies", force: :cascade do |t|
+    t.integer "user_id"
+    t.float "amount", default: 0.0
+    t.string "cash_account"
+    t.string "cash_name"
+    t.integer "status"
+    t.integer "deal_uid"
+    t.string "deal_name"
+    t.datetime "deal_at"
+    t.string "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_cashout_applies_on_status"
+    t.index ["user_id"], name: "index_cashout_applies_on_user_id"
   end
 
   create_table "comments", id: :serial, force: :cascade do |t|
@@ -291,8 +320,6 @@ ActiveRecord::Schema.define(version: 20170717075806) do
     t.index ["site_node_id"], name: "index_sites_on_site_node_id"
     t.index ["url"], name: "index_sites_on_url"
   end
-
-
 
   create_table "sms_logs", force: :cascade do |t|
     t.integer "user_id"

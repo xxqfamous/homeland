@@ -1,7 +1,7 @@
 module Api
   module V3
     class AdvertisersController < Api::V3::ApplicationController
-      before_action :doorkeeper_authorize!, only: [:index, :show, :to_url]
+      before_action :doorkeeper_authorize!, only: [:to_url]
       # before_action :set_user, except: [:index, :me]
 
       # 获取广告商列表
@@ -54,7 +54,6 @@ module Api
 
         render "show"
       end
-
 
 
       def to_url

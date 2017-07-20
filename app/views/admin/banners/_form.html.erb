@@ -1,0 +1,24 @@
+<%= simple_form_for([:admin, @banner]) do |f| %>
+    <%= render 'shared/error_messages', target: @banner %>
+    <%= f.file_field :img %>
+    <div class="form-group">
+      <%= image_tag(@banner.img, class: "media-object") %>
+    </div>
+    <%= f.input :title %>
+    <%= f.input :position %>
+    <%= f.input :href %>
+    <%= f.input :sort %>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.submit t("common.save"), class: "btn btn-lg btn-block btn-primary", 'data-disable-with' => t("common.saving") %>
+      </div>
+      <% if @banner.id %>
+          <div class="col-sm-6">
+            <div class="pull-right">
+              <%= link_to '删除此记录', admin_banner_path(@banner.id), 'data-confirm' => '警告！此动作无法撤销，确定要删除么?', method: :delete, class: "btn btn-danger" %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>

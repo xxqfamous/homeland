@@ -117,6 +117,7 @@ Rails.application.routes.draw do
         get :visit_info
       end
     end
+    resources :banners
   end
 
   get 'api', to: 'home#api', as: 'api'
@@ -177,6 +178,7 @@ Rails.application.routes.draw do
           get :to_url
         end
       end
+      resources :banners
 
       get 'auth/reg_mobile_code', :to => 'auth#reg_mobile_code', :as => 'reg_mobile_code'
       post 'auth/login', :to => 'auth#login', :as => 'login'
