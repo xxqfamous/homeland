@@ -104,7 +104,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/auth/login_or_register"
+        "url": "http://106.14.213.161:3000/api/v3/auth/login_or_register"
       }
     ],
     "error": {
@@ -164,7 +164,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/auth/random_code"
+        "url": "http://106.14.213.161:3000/api/v3/auth/random_code"
       }
     ],
     "error": {
@@ -224,7 +224,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/auth/reg_mobile_code"
+        "url": "http://106.14.213.161:3000/api/v3/auth/reg_mobile_code"
       }
     ],
     "error": {
@@ -305,7 +305,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/cashout_applies.json"
+        "url": "http://106.14.213.161:3000/api/v3/cashout_applies.json"
       }
     ],
     "error": {
@@ -345,7 +345,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/advertisers/1.json"
+        "url": "http://106.14.213.161:3000/api/v3/advertisers/1.json"
       }
     ],
     "filename": "./login.js",
@@ -394,7 +394,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/advertisers"
+        "url": "http://106.14.213.161:3000/api/v3/advertisers"
       }
     ],
     "filename": "./login.js",
@@ -443,7 +443,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:3000/api/v3/banners.json"
+        "url": "http://106.14.213.161:3000/api/v3/banners.json"
       }
     ],
     "filename": "./login.js",

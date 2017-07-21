@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "派红包服务",
   "title": "派红包服务",
-  "url" : "http://127.0.0.1:3000/",
-  "sampleUrl": "http://127.0.0.1:3000/",
+  "url" : "http://106.14.213.161:3000/",
+  "sampleUrl": "http://106.14.213.161:3000/",
   "header": {
     "title": "概述",
     "filename": "header.md"
