@@ -11,7 +11,7 @@
   },
   "footer": {
     "title": "代号定义",
-    "content": "<h3>证件类型</h3>\n<p>身份证: IDCARD <br/>\n护照:  PASSPORT <br/>\n军官证: OFFICER_CERT <br/>\n其他:  OTHER <br/>\n<br/></p>\n<h3>性别</h3>\n<p>男:MALE<br/>\n女:FEMALE<br/>\n<br/></p>\n<h3>被保人与投保人的关系</h3>\n<p>本人:SELF<br/>\n配偶:SPOUSE<br/>\n子女:CHILD<br/>\n父母:PARENT<br/>\n亲戚:RELATIVE<br/>\n其它:OTHER<br/>\n<br/></p>\n<h3>能源类型</h3>\n<p>汽油:GASOLINE<br/>\n柴油:DIESEL<br/>\n电力:ELECTRIC<br/>\n天燃气:NATURALGAS<br/>\n液化石油气:LPG<br/>\n太阳能:SOLAR<br/>\n混合:MIX<br/>\n其它:OTHER<br/>\n<br/></p>\n"
+    "content": "<h3>证件类型</h3>\n<p>身份证: IDCARD <br/></p>\n"
   },
   "order": [
     "OAuth2",
@@ -33,7 +33,7 @@
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-07-21T08:19:49.046Z",
+    "time": "2017-07-21T08:29:29.464Z",
     "url": "http://apidocjs.com",
     "version": "0.16.1"
   }
