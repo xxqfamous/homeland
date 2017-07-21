@@ -65,6 +65,14 @@ access_token = client.password.get_token('username', 'password')
 res = Faraday.get("https://ruby-china.org/api/v3/hello.json?access_token=#{access_token.token}")
 puts res.status
 puts res.body
+
+## ouath2.0
+curl -i http://localhost:3000/oauth/token \
+-F grant_type=password \
+-F username=xxqfamous@gmail.com \
+-F password=1212121111 \
+-F client_id=c0d64bee \
+-F client_secret=e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4
 ```
 
 最后输出
@@ -72,45 +80,40 @@ puts res.body
 ```rb
 { 'current_user' : 'username' }
 ```
-## ouath2.0
-curl -i http://localhost:3000/oauth/token \
--F grant_type=password \
--F username=xxqfamous@gmail.com \
--F password=famous \
--F client_id=c0d64bee \
--F client_secret=e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4
 
 
-## 验证码
+
+## 验证码 GET
 curl http://localhost:3000/api/v3/auth/random_code -d mobile="13429151265" -G
 
-## 登录
+## 登录 POST
 curl -i http://localhost:3000/api/v3/auth/login \
 -F username=15084992712 \
 -F client_id=6a508bf2 \
 -F client_secret=59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
 
-## 登录加验证码
+## 登录加验证码 POST
 curl -i http://localhost:3000/api/v3/auth/login_or_register \
 -F vcode=111222 \
 -F username=15084992712 \
 -F client_id=6a508bf2 \
 -F client_secret=59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
 
+## 当前用户信息 GET
 curl http://localhost:3000/api/v3/users/me.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
 
-## 广告商上架
-curl http://localhost:3000/api/v3/advertisers.json -d "access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb" \
--d "advertiser[name]=人人贷理财1" \
--d "advertiser[company]=北京九鼎投资集团有限公司2" \
+## 广告商列表 GET
+curl http://localhost:3000/api/v3/advertisers.json
 
-## 广告商列表
-curl http://localhost:3000/api/v3/advertisers.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+## 广告商详情 GET http://localhost:3000/api/v3/advertisers/:id.json
+curl http://localhost:3000/api/v3/advertisers/1.json
 
-## 广告商详情
-curl http://localhost:3000/api/v3/advertisers/1.json?access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb
+## Banner GET
+curl http://106.14.213.161:3000/api/v3/banners
 
-## Banner
-curl http://localhost:3000/api/v3/banners
-
+## 提现申请 POST
+curl http://localhost:3000/api/v3/cashout_applies.json -d "access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb" \
+-d "cash_account=1322999191@163.com" \
+-d "cash_name=老王" \
+-d "amount=12" \
 

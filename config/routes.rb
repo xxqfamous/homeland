@@ -118,6 +118,7 @@ Rails.application.routes.draw do
       end
     end
     resources :banners
+    resources :cashout_applies
   end
 
   get 'api', to: 'home#api', as: 'api'
@@ -179,6 +180,7 @@ Rails.application.routes.draw do
         end
       end
       resources :banners
+      resources :cashout_applies
 
       get 'auth/reg_mobile_code', :to => 'auth#reg_mobile_code', :as => 'reg_mobile_code'
       post 'auth/login', :to => 'auth#login', :as => 'login'

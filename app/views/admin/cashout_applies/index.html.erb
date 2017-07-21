@@ -1,0 +1,38 @@
+<% content_for :sitemap do %>
+    <span class="current">提现申请记录</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-inline" action="<%= admin_cashout_applies_path %>">
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="姓名/手机"/>
+    </div>
+    <button class="btn btn-default">搜索</button>
+  </form>
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>手机号</td>
+    <td>提现支付宝</td>
+    <td>提现姓名</td>
+    <td>金额</td>
+    <td>创建时间</td>
+    <td>操作</td>
+  </tr>
+
+  <% @cashout_applies.each do |cashout_apply| %>
+      <tr>
+        <td class="first"><%= cashout_apply.id %></td>
+        <td><%= cashout_apply.user.login %></td>
+        <td><%= cashout_apply.cash_account %></td>
+        <td><%= cashout_apply.cash_name %></td>
+        <td><%= cashout_apply.amount %></td>
+        <td><%= cashout_apply.created_at.to_date %></td>
+        <td>
+          <%= link_to '审核', "#", class: "fa fa-pencil" %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<%= paginate @cashout_applies %>

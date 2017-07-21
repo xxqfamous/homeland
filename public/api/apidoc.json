@@ -1,0 +1,35 @@
+{
+  "name": "phb-serve",
+  "version": "1.0.0",
+  "description": "派红包服务",
+  "title": "派红包服务",
+  "url" : "http://127.0.0.1:3000/",
+  "sampleUrl": "http://127.0.0.1:3000/",
+  "header": {
+    "title": "概述",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "代号定义",
+    "filename": "footer.md"
+  },
+  "order": [
+  	"OAuth2",
+  	"getAccessToken",
+  	
+  	"Vehicle_Insurance",
+    "findModels",
+    "getPlan",
+    "quote",
+    "check",
+    "applyPayment",
+    
+    "Common_Insurance",
+    "insure"
+  ],
+  "template": {
+    "forceLanguage": "zh_cn",
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

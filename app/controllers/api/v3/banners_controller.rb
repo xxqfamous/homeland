@@ -13,12 +13,9 @@ module Api
         # optional! :page, default: 1, values: 1..100
         # optional! :per_page, default: 20, values: 1..100
 
-        # optional! :offset, default: 0
-        # optional! :limit, default: 20, values: 1..150
-
         # limit = params[:limit].to_i
         # limit = 100 if limit > 100
-        @banners = Banner.where(:status => 1).order(sort: :desc).page(page)
+        @banners = Banner.where(:status => 1).order(sort: :asc).page(page)
         render :json => {:count => @banners.count, :total_pages => @banners.total_pages, :current_page => page, :banners => @banners}
       end
 

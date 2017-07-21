@@ -38,8 +38,7 @@ module Api
             hash["created_at"] = "#{Time.now.to_i}"
             hash["exp_time"] = exp_time
             Rails.cache.write("users/#{params["mobile"]}/send_msg/exp_time/600", hash, :expires_in => (24-Time.now().hour()).hours)
-            status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
-            # status = true
+            # status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
             msg = status ? "短信发送成功！" : "短信发送失败！"
           elsif not hash.nil? and not hash["count"].nil? and hash["count"].to_i < 5 and (Time.now.to_i - hash["created_at"].to_i) > 120
             hash["random_code"] = random_code
@@ -47,8 +46,7 @@ module Api
             hash["created_at"] = "#{Time.now.to_i}"
             hash["exp_time"] = exp_time
             Rails.cache.write("users/#{params["mobile"]}/send_msg/exp_time/600", hash, :expires_in => (24-Time.now().hour()).hours)
-            status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
-            # status = true
+            # status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
             msg = status ? "短信发送成功！" : "短信发送失败！"
           elsif not hash.nil? and not hash["count"].nil? and hash["count"].to_i < 5 and (Time.now.to_i - hash["created_at"].to_i) <= 120
             msg ="发送过于频繁，请#{120 - (Time.now.to_i - hash["created_at"].to_i) }秒后重试"
@@ -56,29 +54,27 @@ module Api
             msg = "对不起，短信发送超过限制!"
           end
         end
+        msg = "#{msg}#{random_code}"
         render json: {:status => status, :msg => msg}, status: 200
 
-        # respond_with do |f|
-        #   f.json {render json: {:status => status, :msg => msg}.to_json}
-        # end
       end
 
 
       def login_or_register
         status= true
         msg =''
-        # if not params["vcode"].blank? and not params["mobile"].blank?
-        #   hash = Rails.cache.read("users/#{params["mobile"]}/send_msg/exp_time/600")
-        #   if not hash.nil? and not hash["random_code"].nil? and not hash["exp_time"].nil?
-        #     if hash["exp_time"].to_i < Time.now.to_i and params["vcode"].to_s == hash["random_code"].to_s
-        #       msg ="短信验证码已过期，请重新获取！"
-        #     elsif hash["exp_time"].to_i > Time.now.to_i and params["vcode"].to_s == hash["random_code"].to_s
-        #       status= true
-        #     else
-        #       msg ="验证失败！请重试！"
-        #     end
-        #   end
-        # end
+        if not params["vcode"].blank? and not params["mobile"].blank?
+          hash = Rails.cache.read("users/#{params["mobile"]}/send_msg/exp_time/600")
+          if not hash.nil? and not hash["random_code"].nil? and not hash["exp_time"].nil?
+            if hash["exp_time"].to_i < Time.now.to_i and params["vcode"].to_s == hash["random_code"].to_s
+              msg ="短信验证码已过期，请重新获取！"
+            elsif hash["exp_time"].to_i > Time.now.to_i and params["vcode"].to_s == hash["random_code"].to_s
+              status= true
+            else
+              msg ="验证失败！请重试！"
+            end
+          end
+        end
         access_token=""
         params['mobile'] = params['username']
         if status && !params['client_id'].nil? and !params['client_secret'].nil?
@@ -92,14 +88,14 @@ module Api
             user.password_confirmation = params["mobile"]
             user.save!
             msg ="注册成功！"
-            access_token = Doorkeeper::AccessToken.find_or_create_for(application, user.id, "bearer", 86400, true)
+            access_token = Doorkeeper::AccessToken.find_or_create_for(application, user.id, "bearer", nil, true)
           else
             render plain: "401 Unauthorized", status: 401
             return
           end
 
         end
-        render json: {:status => status, :msg => msg, :access_token => access_token.token}, status: 200
+        render json: {:status => status, :msg => msg, :access_token => access_token.token,:data=>user}, status: 200
 
 
       end
@@ -127,7 +123,7 @@ module Api
           end
 
         end
-        render json: {:status => status, :msg => msg, :access_token => access_token.token,:user=>user}, status: 200
+        render json: {:status => status, :msg => msg, :access_token => access_token.token,:data=>user}, status: 200
       end
     end
   end
