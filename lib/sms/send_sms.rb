@@ -3,7 +3,7 @@ module Sms
 
     def self.send_msg(phone, msg)
       status =true
-      SmsLog.new(:mobile => phone, :content => msg, :channel => "253", :status => status ? 1 : 2, :return_str => response.body).save!
+      SmsLog.new(:mobile => phone, :content => msg, :channel => "253", :status => status ? 1 : 2, :return_str => "").save!
       status
     end
 
