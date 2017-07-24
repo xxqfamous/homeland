@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720032613) do
+ActiveRecord::Schema.define(version: 20170724104222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170720032613) do
 
   create_table "advertisers", force: :cascade do |t|
     t.string "name"
+    t.string "logo_url"
     t.string "banner_url"
     t.string "company"
     t.text "reward"
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(version: 20170720032613) do
     t.string "download_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "logo_url", limit: 255
     t.integer "visits_count", default: 0
     t.index ["name"], name: "index_advertisers_on_name", unique: true
     t.index ["status"], name: "index_advertisers_on_status"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20170720032613) do
 
   create_table "cashout_applies", force: :cascade do |t|
     t.integer "user_id"
-    t.float "amount", default: 0.0
+    t.decimal "amount", default: "0.0"
     t.string "cash_account"
     t.string "cash_name"
     t.integer "status"
@@ -395,7 +395,7 @@ ActiveRecord::Schema.define(version: 20170720032613) do
   create_table "user_accounts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "pay_password"
-    t.float "amount", default: 0.0
+    t.decimal "amount", default: "0.0"
     t.integer "status", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
