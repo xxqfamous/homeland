@@ -54,7 +54,7 @@ module Api
             msg = "对不起，短信发送超过限制!"
           end
         end
-        msg = "#{msg}#{random_code}"
+        msg = "#{msg}#{status ? random_code : ''}"
         render json: {:status => status, :msg => msg}, status: 200
 
       end
@@ -83,7 +83,7 @@ module Api
           if !application.nil? and !user.nil?
             access_token = Doorkeeper::AccessToken.find_or_create_for(application, user.id, "bearer", nil, true)
           elsif !application.nil? and user.nil?
-            user = User.new(:login=>params["mobile"],:email=>"#{params["mobile"]}@phb.com")
+            user = User.new(:login => params["mobile"], :email => "#{params["mobile"]}@phb.com")
             user.password = params["mobile"]
             user.password_confirmation = params["mobile"]
             user.save!
@@ -95,7 +95,7 @@ module Api
           end
 
         end
-        render json: {:status => status, :msg => msg, :access_token => access_token.token,:data=>user}, status: 200
+        render json: {:status => status, :msg => msg, :access_token => access_token.token, :data => user}, status: 200
 
 
       end
@@ -111,7 +111,7 @@ module Api
           if !application.nil? and !user.nil?
             access_token = Doorkeeper::AccessToken.find_or_create_for(application, user.id, "bearer", nil, true)
           elsif !application.nil? and user.nil?
-            user = User.new(:login=>params["mobile"],:email=>"#{params["mobile"]}@phb.com")
+            user = User.new(:login => params["mobile"], :email => "#{params["mobile"]}@phb.com")
             user.password = params["mobile"]
             user.password_confirmation = params["mobile"]
             user.save!
@@ -123,7 +123,7 @@ module Api
           end
 
         end
-        render json: {:status => status, :msg => msg, :access_token => access_token.token,:data=>user}, status: 200
+        render json: {:status => status, :msg => msg, :access_token => access_token.token, :data => user}, status: 200
       end
     end
   end
