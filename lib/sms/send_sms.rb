@@ -2,6 +2,12 @@ module Sms
   module SendSms
 
     def self.send_msg(phone, msg)
+      status =true
+      SmsLog.new(:mobile => phone, :content => msg, :channel => "253", :status => status ? 1 : 2, :return_str => response.body).save!
+      status
+    end
+
+    def self.send_msg2(phone, msg)
       status =false
       sms_url = "http://smssh1.253.com"
       conn = Faraday.new(:url => sms_url)

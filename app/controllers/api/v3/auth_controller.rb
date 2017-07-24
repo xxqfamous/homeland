@@ -38,7 +38,7 @@ module Api
             hash["created_at"] = "#{Time.now.to_i}"
             hash["exp_time"] = exp_time
             Rails.cache.write("users/#{params["mobile"]}/send_msg/exp_time/600", hash, :expires_in => (24-Time.now().hour()).hours)
-            # status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
+            status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
             msg = status ? "短信发送成功！" : "短信发送失败！"
           elsif not hash.nil? and not hash["count"].nil? and hash["count"].to_i < 5 and (Time.now.to_i - hash["created_at"].to_i) > 120
             hash["random_code"] = random_code
@@ -46,7 +46,7 @@ module Api
             hash["created_at"] = "#{Time.now.to_i}"
             hash["exp_time"] = exp_time
             Rails.cache.write("users/#{params["mobile"]}/send_msg/exp_time/600", hash, :expires_in => (24-Time.now().hour()).hours)
-            # status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
+            status = Sms::SendSms.send_msg("#{params["mobile"]}", "验证码:#{random_code},请勿向陌生人提供你收到的验证码,以免造成损失。")
             msg = status ? "短信发送成功！" : "短信发送失败！"
           elsif not hash.nil? and not hash["count"].nil? and hash["count"].to_i < 5 and (Time.now.to_i - hash["created_at"].to_i) <= 120
             msg ="发送过于频繁，请#{120 - (Time.now.to_i - hash["created_at"].to_i) }秒后重试"

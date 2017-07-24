@@ -27,8 +27,8 @@
  * @apiGroup Login
  * @apiParam {String} username 手机号码
  * @apiParam {String} vcode 手机验证码
- * @apiParam {String} client_id 授权认证码 6a508bf2
- * @apiParam {String} client_secret 授权认证码 59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d
+ * @apiParam {String} client_id 授权认证码 c0d64bee
+ * @apiParam {String} client_secret 授权认证码 e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4
  *
  * @apiSuccess {String}   status   正确错误
  * @apiSuccess {String}   mgs   消息
@@ -53,7 +53,7 @@
  * @apiSuccess {String}   status   正确错误
  * @apiSuccess {String}   mgs   消息
  *
- * @apiSampleRequest api/v3/auth/random_code
+ * @apiSampleRequest api/v3/users/me.json
  *
  * @apiError Mobile  手机号码格式错误／或者手机号码为空
  *

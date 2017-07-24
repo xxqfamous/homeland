@@ -56,14 +56,14 @@
             "type": "String",
             "optional": false,
             "field": "client_id",
-            "description": "<p>授权认证码 6a508bf2</p>"
+            "description": "<p>授权认证码 c0d64bee</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "client_secret",
-            "description": "<p>授权认证码 59cd57e9d4b11e49a9d5e5475f3952e3b39c547bbaed4424d980b271f22db70d</p>"
+            "description": "<p>授权认证码 e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4</p>"
           }
         ]
       }
@@ -164,7 +164,7 @@
     },
     "sampleRequest": [
       {
-        "url": "http://106.14.213.161:3000/api/v3/auth/random_code"
+        "url": "http://106.14.213.161:3000/api/v3/users/me.json"
       }
     ],
     "error": {
