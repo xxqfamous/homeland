@@ -21,7 +21,7 @@ class HomeController < ApplicationController
   end
 
   def api
-    redirect_to "/api-doc/"
+    redirect_to "/api/doc/"
   end
 
   def error_404
