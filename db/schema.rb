@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724104222) do
+ActiveRecord::Schema.define(version: 20170731015423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20170724104222) do
 
   create_table "advertisers", force: :cascade do |t|
     t.string "name"
-    t.string "logo_url"
     t.string "banner_url"
     t.string "company"
     t.text "reward"
@@ -39,12 +38,16 @@ ActiveRecord::Schema.define(version: 20170724104222) do
     t.text "guide"
     t.integer "status", default: 1
     t.integer "sort"
-    t.float "reward_amount", default: 0.0
+    t.decimal "reward_amount", default: "0.0"
     t.string "url"
     t.string "download_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo_url", limit: 255
     t.integer "visits_count", default: 0
+    t.string "year_rate"
+    t.string "time_limit"
+    t.string "invest_condition"
     t.index ["name"], name: "index_advertisers_on_name", unique: true
     t.index ["status"], name: "index_advertisers_on_status"
   end
@@ -379,9 +382,9 @@ ActiveRecord::Schema.define(version: 20170724104222) do
   create_table "user_account_records", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "in_or_out"
-    t.float "change_amount"
-    t.float "from_amount"
-    t.float "to_amount"
+    t.decimal "change_amount"
+    t.decimal "from_amount"
+    t.decimal "to_amount"
     t.string "ownerable_type"
     t.integer "ownerable_id"
     t.string "remark"
@@ -399,6 +402,8 @@ ActiveRecord::Schema.define(version: 20170724104222) do
     t.integer "status", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "alipay_account"
+    t.string "alipay_name"
     t.index ["user_id"], name: "index_user_accounts_on_user_id"
   end
 

@@ -118,7 +118,11 @@ Rails.application.routes.draw do
       end
     end
     resources :banners
-    resources :cashout_applies
+    resources :cashout_applies do
+      member do
+        get :aduit
+      end
+    end
   end
 
   get 'api', to: 'home#api', as: 'api'

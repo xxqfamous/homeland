@@ -9,9 +9,29 @@ module Admin
       @cashout_apply = CashoutApply.find(params[:id])
     end
 
-    # def new
-    #   @cashout_apply = CashoutApply.new
-    # end
+    def aduit
+      cashout_apply = CashoutApply.find(params[:id])
+      if cashout_apply.status ==0
+        ActiveRecord::Base.transaction do
+          user_account = cashout_apply.user.user_account
+          user_account_record = cashout_apply.user_account_records.new
+          user_account_record.user_id = user_account.user_id
+          user_account_record.change_amount = cashout_apply.amount
+          user_account_record.from_amount = user_account.amount
+          user_account_record.to_amount = user_account.amount - cashout_apply.amount
+          user_account_record.in_or_out=2
+          user_account_record.save!
+          user_account.amount = user_account.amount - cashout_apply.amount
+          user_account.save!
+          cashout_apply.status=1
+          cashout_apply.deal_uid=current_user.id
+          cashout_apply.deal_name=current_user.name
+          cashout_apply.deal_at=Time.now()
+          cashout_apply.save!
+        end
+      end
+      redirect_to(admin_cashout_applies_path)
+    end
     #
     # def edit
     #   @cashout_apply = CashoutApply.find(params[:id])
