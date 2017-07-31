@@ -2,7 +2,13 @@
 module Admin
   class CashoutAppliesController < Admin::ApplicationController
     def index
-      @cashout_applies = CashoutApply.includes(:user).where(:status => 0).order(id: :desc).page(params[:page])
+      status= 0
+      if params[:status].blank?
+        status = [0, 1]
+      else
+        status= params[:status]
+      end
+      @cashout_applies = CashoutApply.includes(:user).where(:status => status).order(id: :desc).page(params[:page])
     end
 
     def show
