@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731015423) do
+ActiveRecord::Schema.define(version: 20170801042829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -404,7 +404,7 @@ ActiveRecord::Schema.define(version: 20170731015423) do
     t.datetime "updated_at", null: false
     t.string "alipay_account"
     t.string "alipay_name"
-    t.index ["user_id"], name: "index_user_accounts_on_user_id"
+    t.index ["user_id"], name: "index_user_accounts_on_user_id", unique: true
   end
 
   create_table "user_ssos", id: :serial, force: :cascade do |t|
@@ -474,7 +474,7 @@ ActiveRecord::Schema.define(version: 20170731015423) do
     t.integer "user_id"
     t.string "ownerable_type"
     t.integer "ownerable_id"
-    t.float "reward_amount", default: 0.0
+    t.decimal "reward_amount", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ownerable_id"], name: "index_visit_logs_on_ownerable_id"
