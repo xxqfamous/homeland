@@ -64,8 +64,7 @@ module Api
 
       def login_or_register
         status= false
-        msg ='1'
-        params["mobile"] = params["username"]
+        msg =''
         if not params["vcode"].blank? and not params["mobile"].blank?
           hash = Rails.cache.read("users/#{params["mobile"]}/send_msg/exp_time/600")
           if not hash.nil? and not hash["random_code"].nil? and not hash["exp_time"].nil?
