@@ -1,6 +1,8 @@
 module Api
   module V3
     class AuthController < Api::V3::ApplicationController
+      include Sms::SendSms
+
       before_action :doorkeeper_authorize!, only: [:hello]
 
       def not_found
