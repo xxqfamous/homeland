@@ -3,26 +3,26 @@
   <%= f.input :login %>
   <%= f.input :name %>
   <%= f.input :email, as: :email, input_html: { class: "xxlarge" } %>
-  <% if Setting.has_profile_field? :location %>
-  <%= f.input :location %>
-  <% end %>
-  <% if Setting.has_module? :github %>
-  <%= f.input :github %>
-  <% end %>
-  <% if Setting.has_profile_field? :twitter %>
-  <%= f.input :twitter %>
-  <% end %>
-  <%= f.input :email_public, as: :boolean %>
-  <% if Setting.has_profile_field? :company %>
-  <%= f.input :company %>
-  <% end %>
-  <% if Setting.has_profile_field? :tagline %>
-  <%= f.input :tagline, input_html: { class: "span8" } %>
-  <% end %>
-  <%= f.input :bio, as: :text, input_html: { class: "span8", style: "height:60px;" } %>
-  <% if Setting.has_profile_field? :website %>
-  <%= f.input :website, as: :url, input_html: { class: "xxlarge" } %>
-  <% end %>
+  <!--<% if Setting.has_profile_field? :location %>-->
+  <!--<%= f.input :location %>-->
+  <!--<% end %>-->
+  <!--<% if Setting.has_module? :github %>-->
+  <!--<%= f.input :github %>-->
+  <!--<% end %>-->
+  <!--<% if Setting.has_profile_field? :twitter %>-->
+  <!--<%= f.input :twitter %>-->
+  <!--<% end %>-->
+  <!--<%= f.input :email_public, as: :boolean %>-->
+  <!--<% if Setting.has_profile_field? :company %>-->
+  <!--<%= f.input :company %>-->
+  <!--<% end %>-->
+  <!--<% if Setting.has_profile_field? :tagline %>-->
+  <!--<%= f.input :tagline, input_html: { class: "span8" } %>-->
+  <!--<% end %>-->
+  <!--<%= f.input :bio, as: :text, input_html: { class: "span8", style: "height:60px;" } %>-->
+  <!--<% if Setting.has_profile_field? :website %>-->
+  <!--<%= f.input :website, as: :url, input_html: { class: "xxlarge" } %>-->
+  <!--<% end %>-->
   <%= f.input :avatar %>
   <div class="form-group">
     <%= user_avatar_tag(@user, :lg) %>

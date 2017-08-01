@@ -33,8 +33,9 @@ module Api
                 "count" => "0"
             }
           end
-          # puts("valid_code:#{random_code}")
-          if not hash.nil? and not hash["count"].nil? and hash["count"].to_i ==0
+          if !(params["mobile"]=~/^1[3|4|5|7|8][0-9]\d{8}$/)
+            msg ="手机号无效！"
+          elsif not hash.nil? and not hash["count"].nil? and hash["count"].to_i ==0
             hash["random_code"] = random_code
             hash["count"] = hash["count"].to_i + 1
             hash["created_at"] = "#{Time.now.to_i}"
@@ -88,7 +89,7 @@ module Api
             user.password = params["mobile"]
             user.password_confirmation = params["mobile"]
             user.save!
-            msg ="注册成功！"
+            msg ="登录成功！"
             access_token = Doorkeeper::AccessToken.find_or_create_for(application, user.id, "bearer", nil, true)
           else
             render plain: "401 Unauthorized", status: 401

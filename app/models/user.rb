@@ -237,6 +237,14 @@ class User < ApplicationRecord
     "#{Setting.base_url}#{path}"
   end
 
+  def user_account1
+    if self.user_account.nil?
+      UserAccount.find_or_create_for(self.id)
+    else
+      self.user_account
+    end
+  end
+
   def large_avatar_url
     if self[:avatar].present?
       self.avatar.url(:lg)
@@ -288,7 +296,7 @@ class User < ApplicationRecord
         login: self.login,
         name: self.name,
         avatar_url:  self.avatar? ? self.avatar.url(:large) : self.letter_avatar_url(240) ,
-        amount: self.user_account.nil? ? UserAccount.init_account(self.id).amount : self.user_account.amount ,
+        amount: self.user_account.nil? ? UserAccount.find_or_create_for(self.id).amount : self.user_account.amount ,
         alipay_account: self.user_account.nil? ? "" : self.user_account.alipay_account ,
         alipay_name: self.user_account.nil? ? "" : self.user_account.alipay_name
     }
