@@ -25,7 +25,7 @@
  * @apiVersion 0.1.0
  * @apiname login_or_register
  * @apiGroup Login
- * @apiParam {String} username 手机号码
+ * @apiParam {String} mobile 手机号码
  * @apiParam {String} vcode 手机验证码
  * @apiParam {String} client_id 授权认证码 c0d64bee
  * @apiParam {String} client_secret 授权认证码 e27e6afbc8197108ef9027a6ff90310d055743f4c9720b5160fccce74a1f78a4

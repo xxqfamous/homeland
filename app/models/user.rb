@@ -287,7 +287,10 @@ class User < ApplicationRecord
     {
         login: self.login,
         name: self.name,
-        amount: self.user_account.nil? ? UserAccount.init_account(self.id).amount : self.user_account.amount
+        avatar_url:  self.avatar? ? self.avatar.url(:large) : self.letter_avatar_url(240) ,
+        amount: self.user_account.nil? ? UserAccount.init_account(self.id).amount : self.user_account.amount ,
+        alipay_account: self.user_account.nil? ? "" : self.user_account.alipay_account ,
+        alipay_name: self.user_account.nil? ? "" : self.user_account.alipay_name
     }
   end
 

@@ -41,7 +41,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
+            "field": "mobile",
             "description": "<p>手机号码</p>"
           },
           {

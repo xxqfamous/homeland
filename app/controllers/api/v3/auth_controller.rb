@@ -63,8 +63,9 @@ module Api
 
 
       def login_or_register
-        status= true
-        msg =''
+        status= false
+        msg ='1'
+        params["mobile"] = params["username"]
         if not params["vcode"].blank? and not params["mobile"].blank?
           hash = Rails.cache.read("users/#{params["mobile"]}/send_msg/exp_time/600")
           if not hash.nil? and not hash["random_code"].nil? and not hash["exp_time"].nil?
@@ -73,12 +74,11 @@ module Api
             elsif hash["exp_time"].to_i > Time.now.to_i and params["vcode"].to_s == hash["random_code"].to_s
               status= true
             else
-              msg ="验证失败！请重试！"
+              msg ="验证码验证失败！请重试！"
             end
           end
         end
-        access_token=""
-        params['mobile'] = params['username']
+        access_token= Doorkeeper::AccessToken.new()
         if status && !params['client_id'].nil? and !params['client_secret'].nil?
           application = Doorkeeper::Application.find_by_secret(params['client_secret'])
           user = User.find_by_login(params['mobile'])
@@ -106,7 +106,6 @@ module Api
         status= true
         msg =''
         access_token=""
-        params['mobile'] = params['username']
         if status && !params['client_id'].nil? and !params['client_secret'].nil?
           application = Doorkeeper::Application.find_by_secret(params['client_secret'])
           user = User.find_by_login(params['mobile'])

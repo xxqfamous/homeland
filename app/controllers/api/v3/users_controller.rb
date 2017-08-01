@@ -23,7 +23,8 @@ module Api
       # GET /api/v3/users/me
       def me
         @user = current_user
-        render "show"
+        render json: {:status => true, :msg => "", :data => @user}, status: 200
+        # render "show"
       end
 
       # 获取某个用户的详细信息
@@ -31,7 +32,7 @@ module Api
       # GET /api/v3/users/:id
       # @return [UserDetailSerializer]
       def show
-        @meta = { followed: false, blocked: false }
+        @meta = {followed: false, blocked: false}
 
         if current_user
           @meta[:followed] = current_user.follow_user?(@user)
@@ -55,13 +56,13 @@ module Api
 
         @topics = @user.topics.fields_for_list
         @topics =
-          if params[:order] == "likes"
-            @topics.high_likes
-          elsif params[:order] == "replies"
-            @topics.high_replies
-          else
-            @topics.recent
-          end
+            if params[:order] == "likes"
+              @topics.high_likes
+            elsif params[:order] == "replies"
+              @topics.high_replies
+            else
+              @topics.recent
+            end
         @topics = @topics.includes(:user).offset(params[:offset]).limit(params[:limit])
       end
 
@@ -146,7 +147,7 @@ module Api
       # POST /api/v3/users/:id/follow
       def follow
         current_user.follow_user(@user)
-        render json: { ok: 1 }
+        render json: {ok: 1}
       end
 
       # 取消关注用户
@@ -154,7 +155,7 @@ module Api
       # POST /api/v3/users/:id/unfollow
       def unfollow
         current_user.unfollow_user(@user)
-        render json: { ok: 1 }
+        render json: {ok: 1}
       end
 
       # 屏蔽用户
@@ -162,7 +163,7 @@ module Api
       # POST /api/v3/users/:id/block
       def block
         current_user.block_user(@user.id)
-        render json: { ok: 1 }
+        render json: {ok: 1}
       end
 
       # 取消屏蔽用户
@@ -170,7 +171,7 @@ module Api
       # POST /api/v3/users/:id/unblock
       def unblock
         current_user.unblock_user(@user.id)
-        render json: { ok: 1 }
+        render json: {ok: 1}
       end
 
       private
