@@ -1,7 +1,7 @@
 module Api
   module V3
     class UsersController < Api::V3::ApplicationController
-      before_action :doorkeeper_authorize!, only: [:me, :binding_aplipay, :follow, :unfollow, :block, :unblock, :blocked]
+      before_action :doorkeeper_authorize!, only: [:me, :binding_alipay, :follow, :unfollow, :block, :unblock, :blocked]
       before_action :set_user, except: [:index, :me, :binding_alipay]
 
       # 获取热门用户
