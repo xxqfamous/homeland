@@ -1,8 +1,8 @@
 module Api
   module V3
     class UsersController < Api::V3::ApplicationController
-      before_action :doorkeeper_authorize!, only: [:me, :follow, :unfollow, :block, :unblock, :blocked]
-      before_action :set_user, except: [:index, :me]
+      before_action :doorkeeper_authorize!, only: [:me, :binding_aplipay, :follow, :unfollow, :block, :unblock, :blocked]
+      before_action :set_user, except: [:index, :me, :binding_alipay]
 
       # 获取热门用户
       #
@@ -25,6 +25,18 @@ module Api
         @user = current_user
         render json: {:status => true, :msg => "", :data => @user}, status: 200
         # render "show"
+      end
+
+      def binding_alipay
+        requires! :alipay_account
+        requires! :alipay_name
+
+        account = current_user.user_account
+        account.alipay_name = params[:alipay_name]
+        account.alipay_account = params[:alipay_account]
+        account.save!
+
+        render json: {:status => true, :msg => "设置成功"}, status: 200
       end
 
       # 获取某个用户的详细信息

@@ -55,7 +55,7 @@
  *
  * @apiSampleRequest api/v3/users/me.json
  *
- * @apiError Mobile  手机号码格式错误／或者手机号码为空
+ * @apiError 401 授权认证失败
  *
  */
 
@@ -123,5 +123,23 @@
  * @apiSampleRequest api/v3/cashout_applies.json
  *
  * @apiError Mobile  手机号码格式错误／或者手机号码为空
+ *
+ */
+
+
+
+/**
+ * @api  {post} api/v3/users/binding_alipay.json 用户绑定支付宝信息
+ * @apiVersion 0.1.0
+ * @apiname binding_alipay
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ * @apiParam {String} alipay_account 支付宝账号
+ * @apiParam {String} alipay_name 支付宝姓名
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ *
+ * @apiSampleRequest api/v3/users/binding_alipay.json
  *
  */

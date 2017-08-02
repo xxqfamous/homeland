@@ -173,8 +173,8 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Mobile",
-            "description": "<p>手机号码格式错误／或者手机号码为空</p>"
+            "field": "401",
+            "description": "<p>授权认证失败</p>"
           }
         ]
       }
@@ -241,6 +241,68 @@ define({ "api": [
     },
     "filename": "./login.js",
     "groupTitle": "Login"
+  },
+  {
+    "type": "post",
+    "url": "api/v3/users/binding_alipay.json",
+    "title": "用户绑定支付宝信息",
+    "version": "0.1.0",
+    "name": "binding_alipay",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "alipay_account",
+            "description": "<p>支付宝账号</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "alipay_name",
+            "description": "<p>支付宝姓名</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/users/binding_alipay.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
   },
   {
     "type": "post",

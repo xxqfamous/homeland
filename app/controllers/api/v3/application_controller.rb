@@ -28,6 +28,7 @@ module Api
       #     { error: 'ParameterInvalid', message: '原因' }
       class ParameterValueNotAllowed < ActionController::ParameterMissing
         attr_reader :values
+
         def initialize(param, values) # :nodoc:
           @param = param
           @values = values
@@ -39,25 +40,27 @@ module Api
       # HTTP Status 403
       #
       #     { error: 'AccessDenied', message: '原因' }
-      class AccessDenied < StandardError; end
+      class AccessDenied < StandardError;
+      end
 
       # 数据不存在
       # HTTP Status 404
       #
       #     { error: 'ResourceNotFound', message: '原因' }
-      class PageNotFound < StandardError; end
+      class PageNotFound < StandardError;
+      end
 
       rescue_from(ActionController::ParameterMissing) do |err|
-        render json: { error: "ParameterInvalid", message: err }, status: 400
+        render json: {status: false, error: "ParameterInvalid", message: err}, status: 400
       end
       rescue_from(ActiveRecord::RecordInvalid) do |err|
-        render json: { error: "RecordInvalid", message: err }, status: 400
+        render json: {status: false, error: "RecordInvalid", message: err}, status: 400
       end
       rescue_from(AccessDenied) do |err|
-        render json: { error: "AccessDenied", message: err }, status: 403
+        render json: {status: false, error: "AccessDenied", message: err}, status: 403
       end
       rescue_from(ActiveRecord::RecordNotFound) do
-        render json: { error: "ResourceNotFound" }, status: 404
+        render json: {status: false, error: "ResourceNotFound"}, status: 404
       end
 
       def requires!(name, opts = {})
@@ -85,7 +88,7 @@ module Api
       end
 
       def error_404!
-        error!({ "error" => "Page not found" }, 404)
+        error!({"error" => "Page not found"}, 404)
       end
 
       def current_user

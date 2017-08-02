@@ -117,3 +117,8 @@ curl http://localhost:3000/api/v3/cashout_applies.json -d "access_token=cf408a47
 -d "cash_name=老王" \
 -d "amount=12" \
 
+
+## 绑定支付宝 POST
+curl http://localhost:3000/api/v3/users/binding_alipay.json -d "access_token=cf408a4734cd0b93c15ffe369651cdc0b1d76bb3f5a4c9a69c0c9a6bd62f63fb" \
+-d "alipay_account=1322999191@163.com" \
+-d "alipay_name=老王" \
