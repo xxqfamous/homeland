@@ -10,6 +10,6 @@ if advertiser
   json.(advertiser, :id, :name, :company, :company_info, :reward, :rule, :guide, :url, :sort, :status)
   json.logo_url advertiser.logo_url.url
   json.banner_url advertiser.banner_url.url
-  json.created_at advertiser.created_at.to_s(:db)
-  json.updated_at advertiser.updated_at.to_s(:db)
+  json.created_at advertiser.created_at.localtime.to_s(:db)
+  json.updated_at advertiser.updated_at.localtime.to_s(:db)
 end

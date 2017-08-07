@@ -11,6 +11,6 @@ if banner
 
   json.img banner.img_url
   #
-  json.created_at banner.created_at.to_s(:db)
-  json.updated_at banner.updated_at.to_s(:db)
+  json.created_at banner.created_at.localtime.to_s(:db)
+  json.updated_at banner.updated_at.localtime.to_s(:db)
 end

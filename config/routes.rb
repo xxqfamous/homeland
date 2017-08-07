@@ -115,6 +115,7 @@ Rails.application.routes.draw do
     resources :advertisers do
       member do
         get :visit_info
+        get 'visit_audit/:log_id', to: 'advertisers#visit_audit', as: 'visit_audit'
       end
     end
     resources :banners
@@ -164,6 +165,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           get :me
+          get :account_records
           post :binding_alipay
         end
         member do

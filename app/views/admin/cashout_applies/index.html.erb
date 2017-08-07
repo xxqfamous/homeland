@@ -33,7 +33,7 @@
         <td><%= cashout_apply.cash_account %></td>
         <td><%= cashout_apply.cash_name %></td>
         <td><%= cashout_apply.amount %></td>
-        <td><%= cashout_apply.created_at.to_s(:db) %></td>
+        <td><%= cashout_apply.created_at.localtime.to_s(:db) %></td>
         <td>
           <% if cashout_apply.status==0 %>
               <%= link_to '审核', aduit_admin_cashout_apply_path(cashout_apply.id), 'data-confirm' => '确定审核通过吗?', class: "fa fa-pencil" %>

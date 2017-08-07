@@ -143,3 +143,107 @@
  * @apiSampleRequest api/v3/users/binding_alipay.json
  *
  */
+
+/**
+ * @api  {get} api/v3/users/account_records.json 用户交易流水记录
+ * @apiVersion 0.1.0
+ * @apiname account_records
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ * @apiParam {Number} type 1-收入，2支出
+ * @apiParam {Number} page 页
+ * @apiParam {Number} per_page 页码大小
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ * @apiSuccess {String}   count
+ * @apiSuccess {String}   total_pages
+ * @apiSuccess {String}   current_page
+ * @apiSuccess {Object}   account_records
+ *
+ * @apiSampleRequest api/v3/users/account_records.json
+ *
+ */
+
+
+
+/**
+ * @api  {get} api/v3/notifications.json 通知-获取用户的通知列表
+ * @apiVersion 0.1.0
+ * @apiname notifications
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ * @apiParam {Number} page 页
+ * @apiParam {Number} per_page 页码大小
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ * @apiSuccess {String}   count
+ * @apiSuccess {String}   total_pages
+ * @apiSuccess {String}   current_page
+ * @apiSuccess {Object}   notifications
+ *
+ * @apiSampleRequest api/v3/notifications.json
+ *
+ */
+
+
+/**
+ * @api  {post} api/v3/notifications/read.json 通知-设成已读状态
+ * @apiVersion 0.1.0
+ * @apiname read
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ * @apiParam {Array} ids[] 记录Id 例：ids[]=9
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ *
+ * @apiSampleRequest api/v3/notifications/read.json
+ *
+ */
+
+/**
+ * @api  {DELETE} /api/v3/notifications/all 通知-删除当前用户的所有通知
+ * @apiVersion 0.1.0
+ * @apiname all
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ *
+ * @apiSampleRequest api/v3/notifications/all.json
+ *
+ */
+
+/**
+ * @api  {get} /api/v3/notifications/unread_count 通知-获得未读通知数量
+ * @apiVersion 0.1.0
+ * @apiname unread_count
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ * @apiSuccess {Number}   count   消息数量
+ *
+ * @apiSampleRequest api/v3/notifications/unread_count.json
+ *
+ */
+
+
+/**
+ * @api  {DELETE} /api/v3/notifications/:id 通知-删除当前用户的某个通知
+ * @apiVersion 0.1.0
+ * @apiname delete
+ * @apiGroup User
+ * @apiParam {String} access_token 授权认证
+ * @apiParam {String} id
+ *
+ * @apiSuccess {String}   status   正确错误
+ * @apiSuccess {String}   mgs   消息
+ *
+ * @apiSampleRequest api/v3/notifications/8.json
+ *
+ */

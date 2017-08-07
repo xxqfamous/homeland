@@ -7,6 +7,12 @@ class Notification < ActiveRecord::Base
   after_create :realtime_push_to_client
   after_update :realtime_push_to_client
 
+  belongs_to :ownerable, :polymorphic => false
+
+  def ownerable
+    self.target_type.camelize.constantize.find_by_id(self.target_id)
+  end
+
   def realtime_push_to_client
     if user
       Notification.realtime_push_to_client(user)
@@ -19,7 +25,7 @@ class Notification < ActiveRecord::Base
   end
 
   def apns_note
-    @note ||= { alert: notify_title, badge: Notification.unread_count(user) }
+    @note ||= {alert: notify_title, badge: Notification.unread_count(user)}
   end
 
   def notify_title
@@ -39,11 +45,23 @@ class Notification < ActiveRecord::Base
     end
   end
 
+  def notify_desc
+    if notify_type == "user_account_record"
+      if !self.ownerable.blank? && self.ownerable.in_or_out==1
+        "您的佣金已到账，金额：#{self.ownerable.change_amount}元"
+      elsif !self.ownerable.blank? && self.ownerable.in_or_out==2
+        "您的提现已到账，金额：#{self.ownerable.change_amount}元"
+      end
+    else
+      "--"
+    end
+  end
+
   def self.notify_follow(user_id, follower_id)
     opts = {
-      notify_type: "follow",
-      user_id: user_id,
-      actor_id: follower_id
+        notify_type: "follow",
+        user_id: user_id,
+        actor_id: follower_id
     }
     return if Notification.where(opts).count > 0
     Notification.create opts

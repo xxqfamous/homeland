@@ -61,6 +61,28 @@ module Admin
       render action: "visit_info"
     end
 
+    def visit_audit
+      visit_log = VisitLog.find(params[:log_id])
+      ActiveRecord::Base.transaction do
+        user_account = visit_log.user.user_account
+        user_account_record = visit_log.user_account_records.new
+        user_account_record.user_id = visit_log.user_id
+        user_account_record.change_amount = visit_log.reward_amount
+        user_account_record.from_amount = user_account.amount
+        user_account_record.to_amount = user_account.amount + visit_log.reward_amount
+        user_account_record.in_or_out=1
+        user_account_record.save!
+        user_account.amount = user_account.amount + visit_log.reward_amount
+        user_account.save!
+        visit_log.status=1
+        visit_log.deal_uid=current_user.id
+        visit_log.deal_name=current_user.name
+        visit_log.deal_at=Time.now()
+        visit_log.save!
+      end
+      redirect_to(visit_info_admin_advertiser_path(params[:id]))
+    end
+
     def destroy
       @advertiser = Advertiser.find(params[:id])
       # if @user.user_type == :user

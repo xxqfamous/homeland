@@ -11,12 +11,18 @@ module Api
       # @param limit [Integer] default: 20, range: 1..150
       # @return [Array<NotificationSerializer>]
       def index
-        optional! :offset, default: 0
-        optional! :limit, default: 20, values: 1..150
+        # optional! :offset, default: 0
+        # optional! :limit, default: 20, values: 1..150
+        #
+        # @notifications = Notification.where(user_id: current_user.id).order("id desc")
+        #                              .offset(params[:offset])
+        #                              .limit(params[:limit])
 
-        @notifications = Notification.where(user_id: current_user.id).order("id desc")
-                                     .offset(params[:offset])
-                                     .limit(params[:limit])
+
+        # optional! :page, default: 1, values: 1..100
+        # optional! :per_page, default: 20, values: 1..100
+
+        @notifications = Notification.where(user_id: current_user.id).order("id desc").page(page)
       end
 
       # 将当前用户的一些通知设成已读状态
@@ -31,8 +37,8 @@ module Api
           @notifications = current_user.notifications.where(id: params[:ids])
           Notification.read!(@notifications.collect(&:id))
         end
-
-        render json: { ok: 1 }
+        render json: {:status => true, :msg => "ok"}, status: 200
+        # render json: { ok: 1 }
       end
 
       # 删除当前用户的所有通知
@@ -40,6 +46,7 @@ module Api
       # DELETE /api/v3/notifications/all
       def all
         current_user.notifications.delete_all
+        render json: {:status => true, :msg => "ok"}, status: 200
         render json: { ok: 1 }
       end
 
@@ -49,7 +56,7 @@ module Api
       # == returns
       # - count [Integer] 消息数量
       def unread_count
-        render json: { count: Notification.unread_count(current_user) }
+        render json: {:status => true, :msg => "ok", count: Notification.unread_count(current_user)}
       end
 
       # 删除当前用户的某个通知
@@ -58,7 +65,8 @@ module Api
       def destroy
         @notification = current_user.notifications.find(params[:id])
         @notification.destroy
-        render json: { ok: 1 }
+        render json: {:status => true, :msg => "ok"}, status: 200
+        # render json: { ok: 1 }
       end
     end
   end

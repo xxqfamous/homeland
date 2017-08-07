@@ -243,6 +243,151 @@ define({ "api": [
     "groupTitle": "Login"
   },
   {
+    "type": "get",
+    "url": "api/v3/users/account_records.json",
+    "title": "用户交易流水记录",
+    "version": "0.1.0",
+    "name": "account_records",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "type",
+            "description": "<p>1-收入，2支出</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "per_page",
+            "description": "<p>页码大小</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "count",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "total_pages",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "current_page",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "account_records",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/users/account_records.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "DELETE",
+    "url": "/api/v3/notifications/all",
+    "title": "通知-删除当前用户的所有通知",
+    "version": "0.1.0",
+    "name": "all",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/notifications/all.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
     "type": "post",
     "url": "api/v3/users/binding_alipay.json",
     "title": "用户绑定支付宝信息",
@@ -299,6 +444,61 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "http://106.14.213.161:3000/api/v3/users/binding_alipay.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "DELETE",
+    "url": "/api/v3/notifications/:id",
+    "title": "通知-删除当前用户的某个通知",
+    "version": "0.1.0",
+    "name": "delete",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/notifications/8.json"
       }
     ],
     "filename": "./login.js",
@@ -382,6 +582,206 @@ define({ "api": [
         ]
       }
     },
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "api/v3/notifications.json",
+    "title": "通知-获取用户的通知列表",
+    "version": "0.1.0",
+    "name": "notifications",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "per_page",
+            "description": "<p>页码大小</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "count",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "total_pages",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "current_page",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "notifications",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/notifications.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "api/v3/notifications/read.json",
+    "title": "通知-设成已读状态",
+    "version": "0.1.0",
+    "name": "read",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "ids[]",
+            "description": "<p>记录Id 例：ids[]=9</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/notifications/read.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/v3/notifications/unread_count",
+    "title": "通知-获得未读通知数量",
+    "version": "0.1.0",
+    "name": "unread_count",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>授权认证</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>正确错误</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "mgs",
+            "description": "<p>消息</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "count",
+            "description": "<p>消息数量</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/notifications/unread_count.json"
+      }
+    ],
     "filename": "./login.js",
     "groupTitle": "User"
   },
