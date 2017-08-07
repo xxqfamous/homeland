@@ -26,19 +26,20 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def url(version_name = nil)
     @url ||= super({})
-    return @url if version_name.blank?
+    return "" if @url.blank?
+    return "#{Setting.host}#{@url}" if version_name.blank?
     version_name = version_name.to_s
     unless version_name.in?(ALLOW_VERSIONS)
       raise "ImageUploader version_name:#{version_name} not allow."
     end
 
     case Setting.upload_provider
-    when "aliyun"
-      super(thumb: "?x-oss-process=image/#{aliyun_thumb_key(version_name)}")
-    when "upyun"
-      [@url, version_name].join("!")
-    else
-      [@url, version_name].join("!")
+      when "aliyun"
+        super(thumb: "?x-oss-process=image/#{aliyun_thumb_key(version_name)}")
+      when "upyun"
+        [@url, version_name].join("!")
+      else
+        "#{Setting.host}#{[@url, version_name].join("!")}"
     end
   end
 
@@ -46,13 +47,18 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def aliyun_thumb_key(version_name)
     case version_name
-    when "large" then "resize,w_1920"
-    when "lg"    then "resize,w_192,h_192,m_fill"
-    when "md"    then "resize,w_96,h_96,m_fill"
-    when "sm"    then "resize,w_48,h_48,m_fill"
-    when "xs"    then "resize,w_32,h_32,m_fill"
-    else
-      "resize,w_32,h_32,m_fill"
+      when "large" then
+        "resize,w_1920"
+      when "lg" then
+        "resize,w_192,h_192,m_fill"
+      when "md" then
+        "resize,w_96,h_96,m_fill"
+      when "sm" then
+        "resize,w_48,h_48,m_fill"
+      when "xs" then
+        "resize,w_32,h_32,m_fill"
+      else
+        "resize,w_32,h_32,m_fill"
     end
   end
 end

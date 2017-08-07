@@ -44,7 +44,7 @@ module Api
       # 删除当前用户的所有通知
       #
       # DELETE /api/v3/notifications/all
-      def all
+      def alldoorkeeper_authorize!
         current_user.notifications.delete_all
         render json: {:status => true, :msg => "ok"}, status: 200
         render json: { ok: 1 }

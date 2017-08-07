@@ -1,8 +1,8 @@
 module Api
   module V3
     class UsersController < Api::V3::ApplicationController
-      before_action :doorkeeper_authorize!, only: [:me, :binding_alipay, :follow, :unfollow, :block, :unblock, :blocked]
-      before_action :set_user, except: [:index, :me, :binding_alipay,:account_records]
+      before_action :doorkeeper_authorize!, only: [:me, :binding_alipay, :account_records, :follow, :unfollow, :block, :unblock, :blocked]
+      before_action :set_user, except: [:index, :me, :binding_alipay, :account_records]
 
       # 获取热门用户
       #
@@ -53,11 +53,11 @@ module Api
       end
 
       def account_records
-        where =[1,2]
+        where =[1, 2]
         if !params["type"].blank?
           where=[params["type"]]
         end
-        @account_records = current_user.user_account_records.where(:in_or_out=>where).order("id desc").page(page)
+        @account_records = current_user.user_account_records.where(:in_or_out => where).order("id desc").page(page)
         render "account_records"
         # render json: {:status => true, :msg => "", :data => account_records}, status: 200
       end

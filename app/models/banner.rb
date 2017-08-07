@@ -4,9 +4,6 @@ class Banner < ApplicationRecord
 
   mount_uploader :img, BannerUploader
 
-  def img_url
-    "#{Setting.domain}#{self.img.url}"
-  end
 
   def as_json(_options = {})
     {
@@ -14,7 +11,7 @@ class Banner < ApplicationRecord
         title: self.title,
         href: self.href,
         sort: self.sort,
-        img_url: self.img_url
+        img_url: self.img.url
     }
   end
 end
