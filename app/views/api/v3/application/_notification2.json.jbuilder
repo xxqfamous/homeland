@@ -13,7 +13,8 @@ if notification
   json.(notification, :id)
   json.type notification.notify_type.classify
   json.read notification.read?
-  json.notify_title notification.notify_desc
+  json.notify_title notification.notify_head
+  json.notify_content notification.notify_content
   json.created_at notification.created_at.localtime.to_s(:db)
   json.updated_at notification.updated_at.localtime.to_s(:db)
 

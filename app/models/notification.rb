@@ -45,12 +45,24 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def notify_desc
+  def notify_content
     if notify_type == "user_account_record"
       if !self.ownerable.blank? && self.ownerable.in_or_out==1
         "您的佣金已到账，金额：#{self.ownerable.change_amount}元"
       elsif !self.ownerable.blank? && self.ownerable.in_or_out==2
         "您的提现已到账，金额：#{self.ownerable.change_amount}元"
+      end
+    else
+      "--"
+    end
+  end
+
+  def notify_head
+    if notify_type == "user_account_record"
+      if !self.ownerable.blank? && self.ownerable.in_or_out==1
+        "佣金到账提醒"
+      elsif !self.ownerable.blank? && self.ownerable.in_or_out==2
+        "提现到账提醒"
       end
     else
       "--"
