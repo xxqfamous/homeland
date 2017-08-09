@@ -6,7 +6,9 @@
 
 <%= simple_form_for(@advertiser, url: "/admin/advertisers") do |f| %>
     <%= render 'shared/error_messages', target: @advertiser %>
+    <%= f.label :logo_url %>
     <%= f.file_field :logo_url %>
+    <%= f.label :banner_url %>
     <%= f.file_field :banner_url %>
     <%= f.input :name %>
     <%= f.input :company %>
