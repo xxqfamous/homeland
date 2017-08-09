@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807053603) do
+ActiveRecord::Schema.define(version: 20170809090802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,29 @@ ActiveRecord::Schema.define(version: 20170807053603) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_pages_on_slug", unique: true
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name"
+    t.string "logo_url"
+    t.string "banner_url"
+    t.string "company"
+    t.text "reward"
+    t.text "rule"
+    t.text "company_info"
+    t.text "guide"
+    t.integer "status", default: 1
+    t.integer "sort", default: 0
+    t.integer "hot", default: 0
+    t.decimal "reward_amount", default: "0.0"
+    t.string "url"
+    t.string "download_url"
+    t.string "year_rate"
+    t.string "time_limit"
+    t.string "invest_condition"
+    t.integer "visits_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", id: :serial, force: :cascade do |t|

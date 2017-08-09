@@ -1,0 +1,44 @@
+<% content_for :sitemap do %>
+    <a href="<%= admin_partners_path %>"><%= t("admin.menu.partners")%></a> <i class="fa fa-angle-right"></i> <span class="current">导流情况</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-inline" action="<%= visit_info_admin_partner_path(@partner.id) %>">
+    <div class="form-group">
+      <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="名称"/>
+    </div>
+    <!--<div class="form-group">-->
+    <!--<%= select_tag(:type, options_for_select([['全部类别', ''], ['组织', 'Team']], params[:type]), class: 'form-control') %>-->
+    <!--</div>-->
+    <button class="btn btn-default">搜索</button>
+  </form>
+  <!--<div class="pull-right">-->
+  <!--<%= link_to '增加', new_admin_partner_path, class: "btn btn-info" %>-->
+  <!--</div>-->
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>用户</td>
+    <td>奖励金额</td>
+    <td>时间</td>
+    <td>审核状态</td>
+    <td>操作</td>
+  </tr>
+
+  <% @visit_logs.each do |log| %>
+      <tr>
+        <td class="first"><%= log.id %></td>
+        <td><%= log.user.login %></td>
+        <td><%= log.reward_amount %></td>
+        <td><%= log.created_at.localtime.to_s(:db) %></td>
+        <td><%= log.status==0 ? "待审核" : log.status==1 ? "审核通过" : "审核不通过" %></td>
+        <td>
+          <% if log.status==0 %>
+          <%= link_to '审核', visit_audit_admin_partner_path(@partner.id,log.id), 'data-confirm' => '确定审核通过吗?', class: "fa fa-pencil" %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<%= paginate @visit_logs %>

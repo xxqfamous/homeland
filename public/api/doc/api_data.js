@@ -788,7 +788,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "api/v3/advertisers/:id.json",
-    "title": "广告商详情",
+    "title": "广告商详情（作废）",
     "version": "0.1.0",
     "name": "advertiser__id_json",
     "group": "advertisers",
@@ -816,7 +816,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "api/v3/advertisers.json",
-    "title": "广告商列表",
+    "title": "广告商列表（作废）",
     "version": "0.1.0",
     "name": "advertisers",
     "group": "advertisers",
@@ -910,5 +910,82 @@ define({ "api": [
     ],
     "filename": "./login.js",
     "groupTitle": "banners"
+  },
+  {
+    "type": "get",
+    "url": "api/v3/partners.json",
+    "title": "合作伙伴列表",
+    "version": "0.1.0",
+    "name": "partners",
+    "group": "partners",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "count",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "total_pages",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "current_page",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "partners",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/partners"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "partners"
+  },
+  {
+    "type": "get",
+    "url": "api/v3/partners/:id.json",
+    "title": "合作伙伴详情",
+    "version": "0.1.0",
+    "name": "partners__id_json",
+    "group": "partners",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "partner",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://106.14.213.161:3000/api/v3/partners/1.json"
+      }
+    ],
+    "filename": "./login.js",
+    "groupTitle": "partners"
   }
 ] });

@@ -50,9 +50,26 @@
         rule: "规则说明"
         guide: "参与攻略"
         sort: "排序"
+        hot: "推荐（1：是，0：否）"
         url: "参与地址"
         download_url: "下载地址"
-
+      partner:
+        name: "合作伙伴名称"
+        company: "公司名称"
+        company_info: "公司详细介绍"
+        logo_url: "Logo图"
+        banner_url: "Banner图"
+        reward: "奖励说明"
+        reward_amount: "奖励金额"
+        year_rate: "年化收益"
+        time_limit: "时间期限"
+        invest_condition: "投资条件"
+        rule: "规则说明"
+        guide: "参与攻略"
+        sort: "排序"
+        hot: "推荐（1：是，0：否）"
+        url: "参与地址"
+        download_url: "下载地址"
     placeholders:
       user:
         yourname: "帐号"

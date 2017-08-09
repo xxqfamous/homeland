@@ -14,6 +14,7 @@
       locations: "城市"
       exception_logs: "异常"
       advertisers: "广告商"
+      partners: "合作伙伴"
       banners: "Banner图"
     overview: "概览"
     recent_topics: "最近帖子"

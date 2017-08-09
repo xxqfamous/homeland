@@ -62,7 +62,7 @@
 
 
  /**
- * @api  {get} api/v3/advertisers.json 广告商列表
+ * @api  {get} api/v3/advertisers.json 广告商列表（作废）
  * @apiVersion 0.1.0
  * @apiname advertisers
  * @apiGroup advertisers
@@ -78,7 +78,7 @@
  */
 
 /**
- * @api  {get} api/v3/advertisers/:id.json 广告商详情
+ * @api  {get} api/v3/advertisers/:id.json 广告商详情（作废）
  * @apiVersion 0.1.0
  * @apiname advertiser/:id.json
  * @apiGroup advertisers
@@ -86,6 +86,35 @@
  * @apiSuccess {Object}   advertiser
  *
  * @apiSampleRequest api/v3/advertisers/1.json
+ *
+ *
+ */
+
+/**
+ * @api  {get} api/v3/partners.json 合作伙伴列表
+ * @apiVersion 0.1.0
+ * @apiname partners
+ * @apiGroup partners
+ *
+ * @apiSuccess {String}   count
+ * @apiSuccess {String}   total_pages
+ * @apiSuccess {String}   current_page
+ * @apiSuccess {Object}   partners
+ *
+ * @apiSampleRequest api/v3/partners
+ *
+ *
+ */
+
+/**
+ * @api  {get} api/v3/partners/:id.json 合作伙伴详情
+ * @apiVersion 0.1.0
+ * @apiname partners/:id.json
+ * @apiGroup partners
+ *
+ * @apiSuccess {Object}   partner
+ *
+ * @apiSampleRequest api/v3/partners/1.json
  *
  *
  */

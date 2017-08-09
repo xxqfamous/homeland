@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+    <a href="<%= admin_partners_path %>">合作伙伴</a> <i class="fa fa-angle-right"></i>
+    <span class="current"><%= t("common.create") %></span>
+<% end %>
+<h1>New 合作伙伴</h1>
+
+<%= simple_form_for(@partner, url: "/admin/partners") do |f| %>
+    <%= render 'shared/error_messages', target: @partner %>
+    <%= f.label :logo_url %>
+    <%= f.file_field :logo_url %>
+    <%= f.label :banner_url %>
+    <%= f.file_field :banner_url %>
+    <%= f.input :name %>
+    <%= f.input :company %>
+    <%= f.input :company_info, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :reward, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :reward_amount %>
+    <%= f.input :rule, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :guide, as: :text, input_html: {class: "span8", rows: "5"} %>
+    <%= f.input :sort %>
+    <%= f.input :hot %>
+    <%= f.input :url %>
+    <%= f.input :download_url %>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.submit t("common.save"), class: "btn btn-lg btn-block btn-primary", 'data-disable-with' => t("common.saving") %>
+      </div>
+    </div>
+<% end %>

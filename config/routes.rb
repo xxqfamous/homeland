@@ -118,6 +118,13 @@ Rails.application.routes.draw do
         get 'visit_audit/:log_id', to: 'advertisers#visit_audit', as: 'visit_audit'
       end
     end
+
+    resources :partners do
+      member do
+        get :visit_info
+        get 'visit_audit/:log_id', to: 'partners#visit_audit', as: 'visit_audit'
+      end
+    end
     resources :banners
     resources :cashout_applies do
       member do
@@ -182,6 +189,12 @@ Rails.application.routes.draw do
         end
       end
       resources :advertisers do
+        member do
+          get :to_url
+        end
+      end
+
+      resources :partners do
         member do
           get :to_url
         end
