@@ -19,7 +19,7 @@ module Api
 
         # limit = params[:limit].to_i
         # limit = 100 if limit > 100
-        @advertisers = Advertiser.where(:status => 1).page(page)
+        @advertisers = Advertiser.where(:status => 1).order(sort: :asc).page(page)
         # @advertisers = Advertiser.where(:status => 1).offset(params[:offset]).limit(params[:limit])
       end
 
