@@ -95,6 +95,7 @@
  * @apiVersion 0.1.0
  * @apiname partners
  * @apiGroup partners
+ * @apiParam {String} hot 热门推荐
  *
  * @apiSuccess {String}   count
  * @apiSuccess {String}   total_pages

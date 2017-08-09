@@ -18,8 +18,8 @@ module Api
 
         # limit = params[:limit].to_i
         # limit = 100 if limit > 100
-        hot = params["hot"] || [0, 1]
-        @partners = Partner.where(:status => 1).where(:hot=>hot).order(sort: :asc).page(page)
+        hot = params["hot"].blank? ? [0, 1] : params["hot"]
+        @partners = Partner.where(:status => 1).where(:hot => hot).order(sort: :asc).page(page)
         # @partners = Partner.where(:status => 1).offset(params[:offset]).limit(params[:limit])
       end
 

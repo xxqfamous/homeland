@@ -918,6 +918,19 @@
     "version": "0.1.0",
     "name": "partners",
     "group": "partners",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "hot",
+            "description": "<p>热门推荐</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
