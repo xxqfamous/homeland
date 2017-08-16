@@ -232,7 +232,7 @@ class User < ApplicationRecord
   end
 
   def letter_avatar_url(size)
-    path = LetterAvatar.generate(self.login, size).sub("public/", "/")
+    path = LetterAvatar.generate(self.login[3], size).sub("public/", "/")
 
     "#{Setting.base_url}#{path}"
   end

@@ -22,7 +22,7 @@ module Api
         msg = '短信发送失败！'
         status= false
         if not params['mobile'].blank?
-          random_code =SecureRandom.random_number(1000000)
+          random_code =SecureRandom.random_number(100000..999999)
           exp_time =Time.now().to_i + 600
           hash = Rails.cache.fetch("users/#{params["mobile"]}/send_msg/exp_time/600", :expires_in => (24-Time.now().hour()).hours) do
             {
