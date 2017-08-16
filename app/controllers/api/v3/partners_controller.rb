@@ -40,7 +40,7 @@ module Api
         url = "#"
         if !@partner.nil?
           url =@partner.url
-          VisitLogJob.perform_later(current_user.id, @partner.reward_amount, @partner.id, "Advertiser")
+          VisitLogJob.perform_later(current_user.id, @partner.reward_amount, @partner.id, @partner.class.name)
         end
 
         redirect_to url
