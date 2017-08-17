@@ -7,7 +7,7 @@
 # - *sort* {Integer} 排序优先级
 # - *updated_at* [DateTime] 更新时间
 if partner
-  json.(partner, :id, :name, :company, :company_info, :reward, :rule, :guide, :sort, :hot, :status)
+  json.(partner, :id, :name, :company, :company_info, :reward, :rule, :guide, :sort, :hot, :status, :year_rate, :time_limit, :invest_condition, :reward_button)
   json.logo_url partner.logo_url.url
   json.banner_url partner.banner_url.url
   json.url "#{Setting.host}#{to_url_api_v3_partner_path(partner.id)}"

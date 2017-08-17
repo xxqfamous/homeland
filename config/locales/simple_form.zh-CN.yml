@@ -61,6 +61,7 @@
         banner_url: "Banner图"
         reward: "奖励说明"
         reward_amount: "奖励金额"
+        reward_button: "奖励按钮文字"
         year_rate: "年化收益"
         time_limit: "时间期限"
         invest_condition: "投资条件"
